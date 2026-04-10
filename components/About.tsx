@@ -4,6 +4,13 @@ import { FadeIn } from "./FadeIn";
 import { ArrowUpRight } from "lucide-react";
 import { useLang } from "@/contexts/LanguageContext";
 
+const card: React.CSSProperties = {
+  backgroundColor: "#ffffff",
+  borderRadius: "16px",
+  boxShadow: "0 2px 16px rgba(0,0,0,0.07)",
+  padding: "28px",
+};
+
 export default function About() {
   const { t } = useLang();
   const a = t.about;
@@ -14,7 +21,7 @@ export default function About() {
       className="scroll-mt-20"
       style={{ backgroundColor: "#f8f9fa", paddingTop: "100px", paddingBottom: "100px" }}
     >
-      <div style={{ maxWidth: "1100px", margin: "0 auto", paddingLeft: "clamp(16px, 5vw, 32px)", paddingRight: "clamp(16px, 5vw, 32px)" }}>
+      <div style={{ maxWidth: "1100px", margin: "0 auto", paddingLeft: "32px", paddingRight: "32px" }}>
 
         {/* ── Part 1: Text block ── */}
         <div style={{ textAlign: "center", marginBottom: "clamp(64px, 10vw, 112px)" }}>
@@ -84,65 +91,65 @@ export default function About() {
         </div>
 
         {/* ── Row 1: Experience · Education · Languages ── */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5">
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "20px", marginBottom: "20px" }}>
 
           <FadeIn delay={0} style={{ height: "100%" }}>
-            <div className="h-full rounded-2xl p-6 md:p-10" style={{ backgroundColor: "#ffffff", border: "1px solid #e2e8f0" }}>
-              <p style={{ fontSize: "15px", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: "#1d4ed8", marginBottom: "28px" }}>
+            <div className="h-full about-card" style={card}>
+              <p style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#1d4ed8", marginBottom: "24px" }}>
                 {a.experienceLabel}
               </p>
-              <div style={{ display: "flex", flexDirection: "column", gap: "28px" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
                 <div>
-                  <p style={{ fontSize: "clamp(1.1rem, 2.5vw, 1.375rem)", fontWeight: 700, color: "#0f0f0f", marginBottom: "5px" }}>
+                  <p style={{ fontSize: "clamp(1rem, 2.5vw, 1.25rem)", fontWeight: 700, color: "#0f0f0f", marginBottom: "4px" }}>
                     {a.job1Title}
                   </p>
-                  <p style={{ fontSize: "15px", color: "#64748b" }}>{a.job1Sub}</p>
+                  <p style={{ fontSize: "14px", color: "#64748b" }}>{a.job1Sub}</p>
                 </div>
                 <div>
-                  <p style={{ fontSize: "clamp(1.1rem, 2.5vw, 1.375rem)", fontWeight: 700, color: "#0f0f0f", marginBottom: "5px" }}>
+                  <p style={{ fontSize: "clamp(1rem, 2.5vw, 1.25rem)", fontWeight: 700, color: "#0f0f0f", marginBottom: "4px" }}>
                     {a.job2Title}
                   </p>
-                  <p style={{ fontSize: "15px", color: "#64748b" }}>{a.job2Sub}</p>
+                  <p style={{ fontSize: "14px", color: "#64748b" }}>{a.job2Sub}</p>
                 </div>
               </div>
             </div>
           </FadeIn>
 
           <FadeIn delay={0.1} style={{ height: "100%" }}>
-            <div className="h-full rounded-2xl p-6 md:p-10" style={{ backgroundColor: "#ffffff", border: "1px solid #e2e8f0" }}>
-              <p style={{ fontSize: "15px", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: "#1d4ed8", marginBottom: "28px" }}>
+            <div className="h-full about-card" style={card}>
+              <p style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#1d4ed8", marginBottom: "24px" }}>
                 {a.educationLabel}
               </p>
-              <div style={{ display: "flex", flexDirection: "column", gap: "22px" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
                 <div>
-                  <p style={{ fontSize: "clamp(1rem, 2.5vw, 1.25rem)", fontWeight: 700, color: "#0f0f0f", marginBottom: "5px" }}>{a.edu1Title}</p>
-                  <p style={{ fontSize: "15px", color: "#64748b" }}>{a.edu1Sub}</p>
+                  <p style={{ fontSize: "clamp(0.95rem, 2.5vw, 1.125rem)", fontWeight: 700, color: "#0f0f0f", marginBottom: "4px" }}>{a.edu1Title}</p>
+                  <p style={{ fontSize: "14px", color: "#64748b" }}>{a.edu1Sub}</p>
                 </div>
                 <div>
-                  <p style={{ fontSize: "clamp(1rem, 2.5vw, 1.25rem)", fontWeight: 700, color: "#0f0f0f", marginBottom: "5px" }}>{a.edu2Title}</p>
-                  <p style={{ fontSize: "15px", color: "#64748b" }}>{a.edu2Sub}</p>
+                  <p style={{ fontSize: "clamp(0.95rem, 2.5vw, 1.125rem)", fontWeight: 700, color: "#0f0f0f", marginBottom: "4px" }}>{a.edu2Title}</p>
+                  <p style={{ fontSize: "14px", color: "#64748b" }}>{a.edu2Sub}</p>
                 </div>
                 <div>
-                  <p style={{ fontSize: "clamp(1rem, 2.5vw, 1.25rem)", fontWeight: 700, color: "#0f0f0f", marginBottom: "5px" }}>{a.edu3Title}</p>
-                  <p style={{ fontSize: "15px", color: "#64748b" }}>{a.edu3Sub}</p>
+                  <p style={{ fontSize: "clamp(0.95rem, 2.5vw, 1.125rem)", fontWeight: 700, color: "#0f0f0f", marginBottom: "4px" }}>{a.edu3Title}</p>
+                  <p style={{ fontSize: "14px", color: "#64748b" }}>{a.edu3Sub}</p>
                 </div>
               </div>
             </div>
           </FadeIn>
 
           <FadeIn delay={0.2} style={{ height: "100%" }}>
-            <div className="h-full rounded-2xl p-6 md:p-10" style={{ backgroundColor: "#ffffff", border: "1px solid #e2e8f0" }}>
-              <p style={{ fontSize: "15px", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: "#1d4ed8", marginBottom: "28px" }}>
+            <div className="h-full about-card" style={card}>
+              <p style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#1d4ed8", marginBottom: "24px" }}>
                 {a.languagesLabel}
               </p>
-              <div style={{ display: "flex", flexDirection: "column", gap: "22px" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
                 <div>
-                  <p style={{ fontSize: "clamp(1.1rem, 2.5vw, 1.375rem)", fontWeight: 700, color: "#0f0f0f", marginBottom: "5px" }}>{a.lang1}</p>
-                  <p style={{ fontSize: "15px", color: "#64748b" }}>{a.lang1Level}</p>
+                  <p style={{ fontSize: "clamp(1rem, 2.5vw, 1.25rem)", fontWeight: 700, color: "#0f0f0f", marginBottom: "4px" }}>{a.lang1}</p>
+                  <p style={{ fontSize: "14px", color: "#64748b" }}>{a.lang1Level}</p>
                 </div>
                 <div>
-                  <p style={{ fontSize: "clamp(1.1rem, 2.5vw, 1.375rem)", fontWeight: 700, color: "#0f0f0f", marginBottom: "5px" }}>{a.lang2}</p>
-                  <p style={{ fontSize: "15px", color: "#64748b" }}>{a.lang2Level}</p>
+                  <p style={{ fontSize: "clamp(1rem, 2.5vw, 1.25rem)", fontWeight: 700, color: "#0f0f0f", marginBottom: "4px" }}>{a.lang2}</p>
+                  <p style={{ fontSize: "14px", color: "#64748b" }}>{a.lang2Level}</p>
                 </div>
               </div>
             </div>
@@ -152,12 +159,12 @@ export default function About() {
 
         {/* ── Row 2: Beyond the Screen ── */}
         <FadeIn delay={0}>
-          <div className="rounded-2xl p-6 md:p-12" style={{ backgroundColor: "#ffffff", border: "1px solid #e2e8f0" }}>
-            <p style={{ fontSize: "15px", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: "#1d4ed8", marginBottom: "28px" }}>
+          <div className="about-card" style={card}>
+            <p style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#1d4ed8", marginBottom: "24px" }}>
               {a.beyondLabel}
             </p>
             <div className="flex flex-col md:flex-row gap-6 md:gap-12 items-start">
-              <p className="md:whitespace-nowrap" style={{ fontSize: "clamp(1.25rem, 3vw, 1.75rem)", fontWeight: 700, color: "#0f0f0f", flexShrink: 0 }}>
+              <p className="md:whitespace-nowrap" style={{ fontSize: "clamp(1.125rem, 3vw, 1.5rem)", fontWeight: 700, color: "#0f0f0f", flexShrink: 0 }}>
                 {a.beyondTitle}
               </p>
               <div>

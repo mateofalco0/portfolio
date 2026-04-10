@@ -80,7 +80,7 @@ export default function Nav() {
       {/* Main bar */}
       <div
         className="relative flex items-center justify-between md:justify-center"
-        style={{ height: "72px", paddingLeft: "20px", paddingRight: "20px" }}
+        style={{ height: "72px", paddingLeft: "20px", paddingRight: "20px", boxSizing: "border-box" }}
       >
         {/* Desktop: centered nav links */}
         <nav className="hidden md:flex items-center" style={{ gap: "56px" }}>

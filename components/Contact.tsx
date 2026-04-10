@@ -24,7 +24,7 @@ export default function Contact() {
       className="scroll-mt-20"
       style={{ backgroundColor: "#f8f9fa", paddingTop: "100px", paddingBottom: "100px" }}
     >
-      <div style={{ maxWidth: "600px", margin: "0 auto", paddingLeft: "clamp(16px, 5vw, 24px)", paddingRight: "clamp(16px, 5vw, 24px)" }}>
+      <div style={{ maxWidth: "600px", margin: "0 auto", paddingLeft: "20px", paddingRight: "20px" }}>
 
         {/* Title + subtitle */}
         <FadeIn delay={0}>
@@ -47,23 +47,28 @@ export default function Contact() {
 
         {/* Card */}
         <FadeIn delay={0.15}>
-          <div className="rounded-xl p-6 sm:p-10" style={{ backgroundColor: "#ffffff", border: "1px solid #e2e8f0" }}>
+          <div style={{
+            backgroundColor: "#ffffff",
+            borderRadius: "16px",
+            boxShadow: "0 2px 16px rgba(0,0,0,0.07)",
+            padding: "28px",
+          }}>
 
             {/* Email row */}
-            <div className="flex items-center justify-between gap-4">
-              <div className="min-w-0">
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "16px" }}>
+              <div style={{ minWidth: 0 }}>
                 <p style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#94a3b8", marginBottom: "5px" }}>
                   Email
                 </p>
-                <p className="truncate" style={{ fontSize: "clamp(0.875rem, 3.5vw, 1.0625rem)", fontWeight: 500, color: "#0f0f0f" }}>
+                <p style={{ fontSize: "clamp(0.875rem, 3.5vw, 1rem)", fontWeight: 500, color: "#0f0f0f", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                   {email}
                 </p>
               </div>
               <button
                 onClick={copyEmail}
                 title="Copy email"
-                className="flex-shrink-0 flex items-center justify-center transition-colors hover:border-gray-300"
                 style={{
+                  flexShrink: 0,
                   width: "44px",
                   height: "44px",
                   borderRadius: "8px",
@@ -71,6 +76,9 @@ export default function Contact() {
                   backgroundColor: "transparent",
                   cursor: "pointer",
                   color: copied ? "#1d4ed8" : "#64748b",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                   transition: "color 0.2s",
                 }}
               >
@@ -79,18 +87,22 @@ export default function Contact() {
             </div>
 
             {/* Divider */}
-            <div style={{ height: "1px", backgroundColor: "#e2e8f0", margin: "28px 0" }} />
+            <div style={{ height: "1px", backgroundColor: "#e2e8f0", margin: "24px 0" }} />
 
             {/* GitHub + LinkedIn */}
-            <div className="grid grid-cols-2 gap-3">
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
               <a
                 href="https://github.com/mateofalco0"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors"
+                className="hover:bg-gray-50 transition-colors"
                 style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "8px",
                   minHeight: "48px",
-                  borderRadius: "8px",
+                  borderRadius: "10px",
                   border: "1px solid #e2e8f0",
                   fontSize: "15px",
                   fontWeight: 600,
@@ -105,10 +117,14 @@ export default function Contact() {
                 href="https://www.linkedin.com/in/mateo-falco-521956237"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors"
+                className="hover:bg-gray-50 transition-colors"
                 style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "8px",
                   minHeight: "48px",
-                  borderRadius: "8px",
+                  borderRadius: "10px",
                   border: "1px solid #e2e8f0",
                   fontSize: "15px",
                   fontWeight: 600,
@@ -122,22 +138,27 @@ export default function Contact() {
             </div>
 
             {/* Divider */}
-            <div style={{ height: "1px", backgroundColor: "#e2e8f0", margin: "28px 0" }} />
+            <div style={{ height: "1px", backgroundColor: "#e2e8f0", margin: "24px 0" }} />
 
             {/* Download CV */}
             <a
               href={c.cvLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full hover:opacity-80 transition-opacity"
+              className="hover:opacity-80 transition-opacity"
               style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "10px",
                 minHeight: "52px",
-                borderRadius: "8px",
+                borderRadius: "10px",
                 backgroundColor: "#0f0f0f",
                 color: "#ffffff",
                 fontSize: "15px",
                 fontWeight: 600,
                 textDecoration: "none",
+                width: "100%",
               }}
             >
               <FileText size={18} />

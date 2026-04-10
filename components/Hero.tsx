@@ -14,7 +14,7 @@ export default function Hero() {
       className="relative flex items-center justify-center overflow-hidden"
       style={{ minHeight: "100vh", backgroundColor: "#f8f9fa" }}
     >
-      <div className="relative w-full max-w-7xl mx-auto px-6 md:px-10 flex flex-col md:flex-row items-center gap-10 md:gap-20 pt-28 pb-16 md:py-0">
+      <div className="relative w-full max-w-7xl mx-auto px-10 md:px-10 flex flex-col md:flex-row items-center gap-14 md:gap-20 pt-28 pb-16 md:py-0">
 
         {/* Photo */}
         <motion.div
@@ -34,7 +34,7 @@ export default function Hero() {
         </motion.div>
 
         {/* Content */}
-        <div className="flex flex-col items-center md:items-start text-center md:text-left w-full">
+        <div className="flex flex-col items-center md:items-start text-center md:text-left w-full" style={{ paddingLeft: "32px", paddingRight: "32px" }}>
 
           {/* Name */}
           <motion.h1
@@ -106,11 +106,10 @@ export default function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.62, ease }}
-            className="w-full md:w-auto"
           >
             <a
               href="#contact"
-              className="flex md:inline-flex items-center justify-center w-full md:w-auto transition-all duration-200 hover:bg-gray-100"
+              className="inline-flex items-center justify-center mx-6 md:mx-0 transition-all duration-200 hover:bg-gray-100"
               style={{
                 color: "#0f0f0f",
                 border: "2px solid #0f0f0f",
