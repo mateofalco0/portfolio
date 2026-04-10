@@ -3,9 +3,12 @@
 import { useState } from "react";
 import { FadeIn } from "./FadeIn";
 import { Copy, Check, ExternalLink, FileText } from "lucide-react";
+import { useLang } from "@/contexts/LanguageContext";
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
+  const { t } = useLang();
+  const c = t.contact;
   const email = "Mateofalsar21@gmail.com";
 
   function copyEmail() {
@@ -23,7 +26,8 @@ export default function Contact() {
     >
       <div style={{ maxWidth: "640px", margin: "0 auto", paddingLeft: "32px", paddingRight: "32px" }}>
 
-        <FadeIn>
+        {/* Title + subtitle */}
+        <FadeIn delay={0}>
           <div style={{ textAlign: "center", marginBottom: "56px" }}>
             <h2 style={{
               fontSize: "clamp(3rem, 7vw, 5rem)",
@@ -33,15 +37,16 @@ export default function Contact() {
               lineHeight: 1.05,
               marginBottom: "16px",
             }}>
-              Contact
+              {c.title}
             </h2>
             <p style={{ fontSize: "17px", color: "#64748b", lineHeight: 1.6 }}>
-              Reach out via email or connect on my professional profiles.
+              {c.subtitle}
             </p>
           </div>
         </FadeIn>
 
-        <FadeIn delay={0.1}>
+        {/* Card */}
+        <FadeIn delay={0.15}>
           <div style={{
             backgroundColor: "#ffffff",
             border: "1px solid #e2e8f0",
@@ -140,7 +145,7 @@ export default function Contact() {
 
             {/* Download CV */}
             <a
-              href="/Resume Mateo Falco.pdf"
+              href={c.cvLink}
               target="_blank"
               rel="noopener noreferrer"
               style={{
@@ -161,7 +166,7 @@ export default function Contact() {
               className="hover:opacity-80"
             >
               <FileText size={18} />
-              View / Download CV
+              {c.cvBtn}
             </a>
 
           </div>

@@ -2,10 +2,13 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useLang } from "@/contexts/LanguageContext";
 
 const ease = [0.21, 0.47, 0.32, 0.98] as const;
 
 export default function Hero() {
+  const { t } = useLang();
+
   return (
     <section
       className="relative flex items-center justify-center overflow-hidden"
@@ -34,6 +37,7 @@ export default function Hero() {
               src="/MyPhoto.PNG"
               alt="Mateo Falco"
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               style={{ objectFit: "cover" }}
               priority
             />
@@ -67,7 +71,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.32, ease }}
             style={{ color: "#1d4ed8", fontSize: "22px", fontWeight: 600, marginBottom: "24px" }}
           >
-            Junior Developer · Montevideo, Uruguay
+            {t.hero.role}
           </motion.p>
 
           {/* Headline */}
@@ -84,7 +88,7 @@ export default function Hero() {
               maxWidth: "540px",
             }}
           >
-            Hands-on with real systems.<br />Now building a career in tech.
+            {t.hero.headline1}<br />{t.hero.headline2}
           </motion.p>
 
           {/* Description */}
@@ -100,12 +104,10 @@ export default function Hero() {
               maxWidth: "520px",
             }}
           >
-            Real-world exposure to APIs, SQL, production systems, and AI-powered automations.
-            Now focused on development and looking for a junior role where I can grow
-            and do meaningful work.
+            {t.hero.description}
           </motion.p>
 
-          {/* CTAs */}
+          {/* CTA */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -128,7 +130,7 @@ export default function Hero() {
               }}
               className="transition-all duration-200 hover:bg-gray-100"
             >
-              Contact me
+              {t.hero.contactBtn}
             </a>
           </motion.div>
 

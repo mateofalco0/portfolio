@@ -2,8 +2,12 @@
 
 import { FadeIn } from "./FadeIn";
 import { ArrowUpRight } from "lucide-react";
+import { useLang } from "@/contexts/LanguageContext";
 
 export default function About() {
+  const { t } = useLang();
+  const a = t.about;
+
   return (
     <section
       id="about"
@@ -12,10 +16,11 @@ export default function About() {
     >
       <div style={{ maxWidth: "1100px", margin: "0 auto", paddingLeft: "32px", paddingRight: "32px" }}>
 
-        {/* ── Part 1: Text block ── */}
-        <FadeIn>
-          <div style={{ textAlign: "center", marginBottom: "120px" }}>
+        {/* ── Part 1: Text block — individually staggered ── */}
+        <div style={{ textAlign: "center", marginBottom: "120px" }}>
 
+          {/* Label + headline together */}
+          <FadeIn delay={0}>
             <p style={{
               fontSize: "24px",
               fontWeight: 800,
@@ -24,9 +29,8 @@ export default function About() {
               color: "#1d4ed8",
               marginBottom: "32px",
             }}>
-              About me
+              {a.label}
             </p>
-
             <h2 style={{
               fontSize: "clamp(3rem, 7vw, 5.5rem)",
               fontWeight: 800,
@@ -36,11 +40,14 @@ export default function About() {
               margin: "0 auto 36px",
               maxWidth: "900px",
             }}>
-              Junior Developer from Uruguay,<br />
-              currently building real things<br />
-              and looking for a team to grow with.
+              {a.headline1}<br />
+              {a.headline2}<br />
+              {a.headline3}
             </h2>
+          </FadeIn>
 
+          {/* Paragraph */}
+          <FadeIn delay={0.1}>
             <p style={{
               fontSize: "18px",
               lineHeight: 1.8,
@@ -48,18 +55,15 @@ export default function About() {
               maxWidth: "680px",
               margin: "0 auto 40px",
             }}>
-              Junior Developer from Uruguay, currently in my 4th year of Systems
-              Engineering at ORT University. I chose this path because I&apos;m drawn
-              to building things that solve real problems — not just writing code,
-              but understanding systems, finding what breaks, and making it work
-              better. I&apos;ve had hands-on exposure to APIs, SQL, and production
-              environments before landing my first dev role, and I&apos;m looking for
-              a team where I can keep growing and contribute from day one.
+              {a.paragraph}
             </p>
+          </FadeIn>
 
+          {/* GitHub + LinkedIn links */}
+          <FadeIn delay={0.2}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "40px" }}>
               <a
-                href="https://github.com/mateofalco"
+                href="https://github.com/mateofalco0"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontSize: "17px", fontWeight: 700, color: "#0f0f0f" }}
@@ -77,119 +81,96 @@ export default function About() {
                 LinkedIn <ArrowUpRight style={{ width: "20px", height: "20px" }} />
               </a>
             </div>
+          </FadeIn>
 
-          </div>
-        </FadeIn>
+        </div>
 
-        {/* ── Row 1: Experience · Education · Languages ── */}
-        <FadeIn delay={0.1}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "24px", marginBottom: "24px" }}>
+        {/* ── Row 1: Experience · Education · Languages — each card staggered ── */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "24px", marginBottom: "24px" }}>
 
-            {/* Experience */}
-            <div style={{ backgroundColor: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "20px", padding: "48px" }}>
+          {/* Experience */}
+          <FadeIn delay={0} style={{ height: "100%" }}>
+            <div style={{ backgroundColor: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "20px", padding: "48px", height: "100%" }}>
               <p style={{ fontSize: "20px", fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase", color: "#1d4ed8", marginBottom: "36px" }}>
-                Experience
+                {a.experienceLabel}
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: "32px" }}>
                 <div>
                   <p style={{ fontSize: "22px", fontWeight: 700, color: "#0f0f0f", marginBottom: "6px" }}>
-                    Operations Analyst
+                    {a.job1Title}
                   </p>
-                  <p style={{ fontSize: "16px", color: "#64748b" }}>
-                    Bonoxs · 2025 – 2026
-                  </p>
+                  <p style={{ fontSize: "16px", color: "#64748b" }}>{a.job1Sub}</p>
                 </div>
                 <div>
                   <p style={{ fontSize: "22px", fontWeight: 700, color: "#0f0f0f", marginBottom: "6px" }}>
-                    Admissions Manager
+                    {a.job2Title}
                   </p>
-                  <p style={{ fontSize: "16px", color: "#64748b" }}>
-                    Woodlands School · 2024 – 2025
-                  </p>
+                  <p style={{ fontSize: "16px", color: "#64748b" }}>{a.job2Sub}</p>
                 </div>
               </div>
             </div>
+          </FadeIn>
 
-            {/* Education */}
-            <div style={{ backgroundColor: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "20px", padding: "48px" }}>
+          {/* Education */}
+          <FadeIn delay={0.1} style={{ height: "100%" }}>
+            <div style={{ backgroundColor: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "20px", padding: "48px", height: "100%" }}>
               <p style={{ fontSize: "20px", fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase", color: "#1d4ed8", marginBottom: "36px" }}>
-                Education
+                {a.educationLabel}
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: "28px" }}>
                 <div>
-                  <p style={{ fontSize: "20px", fontWeight: 700, color: "#0f0f0f", marginBottom: "6px" }}>
-                    Universidad ORT Uruguay
-                  </p>
-                  <p style={{ fontSize: "16px", color: "#64748b" }}>
-                    Systems Engineering · 2022 – Present (4th year)
-                  </p>
+                  <p style={{ fontSize: "20px", fontWeight: 700, color: "#0f0f0f", marginBottom: "6px" }}>{a.edu1Title}</p>
+                  <p style={{ fontSize: "16px", color: "#64748b" }}>{a.edu1Sub}</p>
                 </div>
                 <div>
-                  <p style={{ fontSize: "20px", fontWeight: 700, color: "#0f0f0f", marginBottom: "6px" }}>
-                    Inst. Juan XXIII
-                  </p>
-                  <p style={{ fontSize: "16px", color: "#64748b" }}>
-                    High School · 2020 – 2021
-                  </p>
+                  <p style={{ fontSize: "20px", fontWeight: 700, color: "#0f0f0f", marginBottom: "6px" }}>{a.edu2Title}</p>
+                  <p style={{ fontSize: "16px", color: "#64748b" }}>{a.edu2Sub}</p>
                 </div>
                 <div>
-                  <p style={{ fontSize: "20px", fontWeight: 700, color: "#0f0f0f", marginBottom: "6px" }}>
-                    Woodlands School
-                  </p>
-                  <p style={{ fontSize: "16px", color: "#64748b" }}>
-                    Primary &amp; Secondary · 2007 – 2019
-                  </p>
+                  <p style={{ fontSize: "20px", fontWeight: 700, color: "#0f0f0f", marginBottom: "6px" }}>{a.edu3Title}</p>
+                  <p style={{ fontSize: "16px", color: "#64748b" }}>{a.edu3Sub}</p>
                 </div>
               </div>
             </div>
+          </FadeIn>
 
-            {/* Languages */}
-            <div style={{ backgroundColor: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "20px", padding: "48px" }}>
+          {/* Languages */}
+          <FadeIn delay={0.2} style={{ height: "100%" }}>
+            <div style={{ backgroundColor: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "20px", padding: "48px", height: "100%" }}>
               <p style={{ fontSize: "20px", fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase", color: "#1d4ed8", marginBottom: "36px" }}>
-                Languages
+                {a.languagesLabel}
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: "28px" }}>
                 <div>
-                  <p style={{ fontSize: "22px", fontWeight: 700, color: "#0f0f0f", marginBottom: "6px" }}>
-                    Spanish
-                  </p>
-                  <p style={{ fontSize: "16px", color: "#64748b" }}>Native</p>
+                  <p style={{ fontSize: "22px", fontWeight: 700, color: "#0f0f0f", marginBottom: "6px" }}>{a.lang1}</p>
+                  <p style={{ fontSize: "16px", color: "#64748b" }}>{a.lang1Level}</p>
                 </div>
                 <div>
-                  <p style={{ fontSize: "22px", fontWeight: 700, color: "#0f0f0f", marginBottom: "6px" }}>
-                    English
-                  </p>
-                  <p style={{ fontSize: "16px", color: "#64748b" }}>Advanced</p>
+                  <p style={{ fontSize: "22px", fontWeight: 700, color: "#0f0f0f", marginBottom: "6px" }}>{a.lang2}</p>
+                  <p style={{ fontSize: "16px", color: "#64748b" }}>{a.lang2Level}</p>
                 </div>
               </div>
             </div>
+          </FadeIn>
 
-          </div>
-        </FadeIn>
+        </div>
 
         {/* ── Row 2: Beyond the Screen — full width ── */}
-        <FadeIn delay={0.2}>
+        <FadeIn delay={0}>
           <div style={{ backgroundColor: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "20px", padding: "48px" }}>
             <p style={{ fontSize: "20px", fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase", color: "#1d4ed8", marginBottom: "36px" }}>
-              Beyond the screen
+              {a.beyondLabel}
             </p>
             <div style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: "48px", alignItems: "start" }}>
               <p style={{ fontSize: "28px", fontWeight: 700, color: "#0f0f0f", whiteSpace: "nowrap" }}>
-                Beyond the screen.
+                {a.beyondTitle}
               </p>
               <div>
                 <p style={{ fontSize: "16px", lineHeight: 1.8, color: "#64748b", marginBottom: "20px" }}>
-                  Football has been a constant in my life since I was a kid — I still play for the same
-                  school I grew up in, and that never gets old. Outside of that, I love spending time with
-                  my friends and family. Those moments are what recharge me.
+                  {a.beyondP1}
                 </p>
                 <p style={{ fontSize: "16px", lineHeight: 1.8, color: "#64748b" }}>
-                  Traveling is something I&apos;m genuinely passionate about. There&apos;s something about being
-                  somewhere new, figuring things out, and experiencing a different culture that I find hard
-                  to match. Last year I had the chance to study abroad in San Sebasti&aacute;n, Spain — one of
-                  the best decisions I&apos;ve made. The city, the people, the food, the pace of life. And
-                  somewhere between all of that, I got in the water for the first time and fell in love
-                  with surfing.
+                  {a.beyondP2}
                 </p>
               </div>
             </div>
