@@ -21,6 +21,7 @@
 html {
   scroll-behavior: smooth;
   color-scheme: light;
+  overflow-x: hidden;
 }
 
 body {
@@ -29,6 +30,7 @@ body {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 ::selection {
@@ -39,3 +41,28 @@ body {
 ::-webkit-scrollbar-track { background: #f8f9fa; }
 ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 99px; }
 ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* ── Hero photo responsive size ── */
+.hero-photo-container {
+  width: 240px;
+  height: 240px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0 0 5px #1d4ed8, 0 0 50px 10px rgba(29, 78, 216, 0.12);
+}
+
+@media (min-width: 640px) {
+  .hero-photo-container {
+    width: 320px;
+    height: 320px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-photo-container {
+    width: 480px;
+    height: 480px;
+  }
+}

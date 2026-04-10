@@ -12,33 +12,31 @@ export default function About() {
     <section
       id="about"
       className="scroll-mt-20"
-      style={{ backgroundColor: "#f8f9fa", paddingTop: "140px", paddingBottom: "140px" }}
+      style={{ backgroundColor: "#f8f9fa", paddingTop: "100px", paddingBottom: "100px" }}
     >
-      <div style={{ maxWidth: "1100px", margin: "0 auto", paddingLeft: "32px", paddingRight: "32px" }}>
+      <div className="w-full max-w-[1100px] mx-auto px-4 sm:px-6 md:px-8">
 
-        {/* ── Part 1: Text block — individually staggered ── */}
-        <div style={{ textAlign: "center", marginBottom: "120px" }}>
+        {/* ── Part 1: Text block ── */}
+        <div className="text-center mb-16 md:mb-28">
 
-          {/* Label + headline together */}
           <FadeIn delay={0}>
             <p style={{
-              fontSize: "24px",
+              fontSize: "clamp(14px, 3vw, 20px)",
               fontWeight: 800,
               letterSpacing: "0.12em",
               textTransform: "uppercase",
               color: "#1d4ed8",
-              marginBottom: "32px",
+              marginBottom: "24px",
             }}>
               {a.label}
             </p>
             <h2 style={{
-              fontSize: "clamp(3rem, 7vw, 5.5rem)",
+              fontSize: "clamp(1.75rem, 6vw, 5.5rem)",
               fontWeight: 800,
               lineHeight: 1.05,
               letterSpacing: "-0.03em",
               color: "#0f0f0f",
-              margin: "0 auto 36px",
-              maxWidth: "900px",
+              marginBottom: "28px",
             }}>
               {a.headline1}<br />
               {a.headline2}<br />
@@ -46,108 +44,103 @@ export default function About() {
             </h2>
           </FadeIn>
 
-          {/* Paragraph */}
           <FadeIn delay={0.1}>
             <p style={{
-              fontSize: "18px",
+              fontSize: "clamp(1rem, 2vw, 1.125rem)",
               lineHeight: 1.8,
               color: "#64748b",
               maxWidth: "680px",
-              margin: "0 auto 40px",
+              margin: "0 auto 32px",
             }}>
               {a.paragraph}
             </p>
           </FadeIn>
 
-          {/* GitHub + LinkedIn links */}
           <FadeIn delay={0.2}>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "40px" }}>
+            <div className="flex items-center justify-center gap-8">
               <a
                 href="https://github.com/mateofalco0"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontSize: "17px", fontWeight: 700, color: "#0f0f0f" }}
-                className="transition-opacity hover:opacity-50"
+                className="inline-flex items-center gap-2 transition-opacity hover:opacity-50"
+                style={{ fontSize: "16px", fontWeight: 700, color: "#0f0f0f" }}
               >
-                GitHub <ArrowUpRight style={{ width: "20px", height: "20px" }} />
+                GitHub <ArrowUpRight size={18} />
               </a>
               <a
                 href="https://www.linkedin.com/in/mateo-falco-521956237"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontSize: "17px", fontWeight: 700, color: "#0f0f0f" }}
-                className="transition-opacity hover:opacity-50"
+                className="inline-flex items-center gap-2 transition-opacity hover:opacity-50"
+                style={{ fontSize: "16px", fontWeight: 700, color: "#0f0f0f" }}
               >
-                LinkedIn <ArrowUpRight style={{ width: "20px", height: "20px" }} />
+                LinkedIn <ArrowUpRight size={18} />
               </a>
             </div>
           </FadeIn>
 
         </div>
 
-        {/* ── Row 1: Experience · Education · Languages — each card staggered ── */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "24px", marginBottom: "24px" }}>
+        {/* ── Row 1: Experience · Education · Languages ── */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5">
 
-          {/* Experience */}
           <FadeIn delay={0} style={{ height: "100%" }}>
-            <div style={{ backgroundColor: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "20px", padding: "48px", height: "100%" }}>
-              <p style={{ fontSize: "20px", fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase", color: "#1d4ed8", marginBottom: "36px" }}>
+            <div className="h-full rounded-2xl p-6 md:p-10" style={{ backgroundColor: "#ffffff", border: "1px solid #e2e8f0" }}>
+              <p style={{ fontSize: "15px", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: "#1d4ed8", marginBottom: "28px" }}>
                 {a.experienceLabel}
               </p>
-              <div style={{ display: "flex", flexDirection: "column", gap: "32px" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "28px" }}>
                 <div>
-                  <p style={{ fontSize: "22px", fontWeight: 700, color: "#0f0f0f", marginBottom: "6px" }}>
+                  <p style={{ fontSize: "clamp(1.1rem, 2.5vw, 1.375rem)", fontWeight: 700, color: "#0f0f0f", marginBottom: "5px" }}>
                     {a.job1Title}
                   </p>
-                  <p style={{ fontSize: "16px", color: "#64748b" }}>{a.job1Sub}</p>
+                  <p style={{ fontSize: "15px", color: "#64748b" }}>{a.job1Sub}</p>
                 </div>
                 <div>
-                  <p style={{ fontSize: "22px", fontWeight: 700, color: "#0f0f0f", marginBottom: "6px" }}>
+                  <p style={{ fontSize: "clamp(1.1rem, 2.5vw, 1.375rem)", fontWeight: 700, color: "#0f0f0f", marginBottom: "5px" }}>
                     {a.job2Title}
                   </p>
-                  <p style={{ fontSize: "16px", color: "#64748b" }}>{a.job2Sub}</p>
+                  <p style={{ fontSize: "15px", color: "#64748b" }}>{a.job2Sub}</p>
                 </div>
               </div>
             </div>
           </FadeIn>
 
-          {/* Education */}
           <FadeIn delay={0.1} style={{ height: "100%" }}>
-            <div style={{ backgroundColor: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "20px", padding: "48px", height: "100%" }}>
-              <p style={{ fontSize: "20px", fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase", color: "#1d4ed8", marginBottom: "36px" }}>
+            <div className="h-full rounded-2xl p-6 md:p-10" style={{ backgroundColor: "#ffffff", border: "1px solid #e2e8f0" }}>
+              <p style={{ fontSize: "15px", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: "#1d4ed8", marginBottom: "28px" }}>
                 {a.educationLabel}
               </p>
-              <div style={{ display: "flex", flexDirection: "column", gap: "28px" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "22px" }}>
                 <div>
-                  <p style={{ fontSize: "20px", fontWeight: 700, color: "#0f0f0f", marginBottom: "6px" }}>{a.edu1Title}</p>
-                  <p style={{ fontSize: "16px", color: "#64748b" }}>{a.edu1Sub}</p>
+                  <p style={{ fontSize: "clamp(1rem, 2.5vw, 1.25rem)", fontWeight: 700, color: "#0f0f0f", marginBottom: "5px" }}>{a.edu1Title}</p>
+                  <p style={{ fontSize: "15px", color: "#64748b" }}>{a.edu1Sub}</p>
                 </div>
                 <div>
-                  <p style={{ fontSize: "20px", fontWeight: 700, color: "#0f0f0f", marginBottom: "6px" }}>{a.edu2Title}</p>
-                  <p style={{ fontSize: "16px", color: "#64748b" }}>{a.edu2Sub}</p>
+                  <p style={{ fontSize: "clamp(1rem, 2.5vw, 1.25rem)", fontWeight: 700, color: "#0f0f0f", marginBottom: "5px" }}>{a.edu2Title}</p>
+                  <p style={{ fontSize: "15px", color: "#64748b" }}>{a.edu2Sub}</p>
                 </div>
                 <div>
-                  <p style={{ fontSize: "20px", fontWeight: 700, color: "#0f0f0f", marginBottom: "6px" }}>{a.edu3Title}</p>
-                  <p style={{ fontSize: "16px", color: "#64748b" }}>{a.edu3Sub}</p>
+                  <p style={{ fontSize: "clamp(1rem, 2.5vw, 1.25rem)", fontWeight: 700, color: "#0f0f0f", marginBottom: "5px" }}>{a.edu3Title}</p>
+                  <p style={{ fontSize: "15px", color: "#64748b" }}>{a.edu3Sub}</p>
                 </div>
               </div>
             </div>
           </FadeIn>
 
-          {/* Languages */}
           <FadeIn delay={0.2} style={{ height: "100%" }}>
-            <div style={{ backgroundColor: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "20px", padding: "48px", height: "100%" }}>
-              <p style={{ fontSize: "20px", fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase", color: "#1d4ed8", marginBottom: "36px" }}>
+            <div className="h-full rounded-2xl p-6 md:p-10" style={{ backgroundColor: "#ffffff", border: "1px solid #e2e8f0" }}>
+              <p style={{ fontSize: "15px", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: "#1d4ed8", marginBottom: "28px" }}>
                 {a.languagesLabel}
               </p>
-              <div style={{ display: "flex", flexDirection: "column", gap: "28px" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "22px" }}>
                 <div>
-                  <p style={{ fontSize: "22px", fontWeight: 700, color: "#0f0f0f", marginBottom: "6px" }}>{a.lang1}</p>
-                  <p style={{ fontSize: "16px", color: "#64748b" }}>{a.lang1Level}</p>
+                  <p style={{ fontSize: "clamp(1.1rem, 2.5vw, 1.375rem)", fontWeight: 700, color: "#0f0f0f", marginBottom: "5px" }}>{a.lang1}</p>
+                  <p style={{ fontSize: "15px", color: "#64748b" }}>{a.lang1Level}</p>
                 </div>
                 <div>
-                  <p style={{ fontSize: "22px", fontWeight: 700, color: "#0f0f0f", marginBottom: "6px" }}>{a.lang2}</p>
-                  <p style={{ fontSize: "16px", color: "#64748b" }}>{a.lang2Level}</p>
+                  <p style={{ fontSize: "clamp(1.1rem, 2.5vw, 1.375rem)", fontWeight: 700, color: "#0f0f0f", marginBottom: "5px" }}>{a.lang2}</p>
+                  <p style={{ fontSize: "15px", color: "#64748b" }}>{a.lang2Level}</p>
                 </div>
               </div>
             </div>
@@ -155,21 +148,21 @@ export default function About() {
 
         </div>
 
-        {/* ── Row 2: Beyond the Screen — full width ── */}
+        {/* ── Row 2: Beyond the Screen ── */}
         <FadeIn delay={0}>
-          <div style={{ backgroundColor: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "20px", padding: "48px" }}>
-            <p style={{ fontSize: "20px", fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase", color: "#1d4ed8", marginBottom: "36px" }}>
+          <div className="rounded-2xl p-6 md:p-12" style={{ backgroundColor: "#ffffff", border: "1px solid #e2e8f0" }}>
+            <p style={{ fontSize: "15px", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: "#1d4ed8", marginBottom: "28px" }}>
               {a.beyondLabel}
             </p>
-            <div style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: "48px", alignItems: "start" }}>
-              <p style={{ fontSize: "28px", fontWeight: 700, color: "#0f0f0f", whiteSpace: "nowrap" }}>
+            <div className="flex flex-col md:flex-row gap-6 md:gap-12 items-start">
+              <p className="md:whitespace-nowrap" style={{ fontSize: "clamp(1.25rem, 3vw, 1.75rem)", fontWeight: 700, color: "#0f0f0f", flexShrink: 0 }}>
                 {a.beyondTitle}
               </p>
               <div>
-                <p style={{ fontSize: "16px", lineHeight: 1.8, color: "#64748b", marginBottom: "20px" }}>
+                <p style={{ fontSize: "15px", lineHeight: 1.8, color: "#64748b", marginBottom: "16px" }}>
                   {a.beyondP1}
                 </p>
-                <p style={{ fontSize: "16px", lineHeight: 1.8, color: "#64748b" }}>
+                <p style={{ fontSize: "15px", lineHeight: 1.8, color: "#64748b" }}>
                   {a.beyondP2}
                 </p>
               </div>

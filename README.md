@@ -1,297 +1,468 @@
 # Mateo Falco — Portfolio
 
-Personal portfolio website for Mateo Falco, Junior Developer from Montevideo, Uruguay. Built to present professional background, experience, and contact information to potential employers and collaborators.
+### A complete guide to this project, written for anyone — no programming experience required.
 
 ---
 
-## 1. Project Overview
+## 1. What Is This Project?
 
-This is a single-page portfolio website. Its purpose is simple: give anyone who lands on it a clear, honest picture of who Mateo Falco is, what he has done, and how to reach him.
+### What is a portfolio website?
 
-The site has three sections:
-- **Hero** — first impression, name, role, and contact CTA
-- **About** — background, experience, education, languages, and personal section
-- **Contact** — email (with copy to clipboard), GitHub, LinkedIn, and CV download
+A portfolio website is like a digital business card — but much richer. Instead of just a name and a phone number, a portfolio website shows who you are, what you've done, what skills you have, and how to contact you.
 
-There is no login, no CMS, no database, and no backend. It is a pure static site that runs entirely in the browser after being built and deployed.
+Think of it like a resume, but instead of a piece of paper you hand someone, it's a page on the internet anyone can visit from anywhere in the world.
 
----
+### What does this specific portfolio do?
 
-## 2. Tech Stack
+This is the personal portfolio website of **Mateo Falco**, a Junior Developer from Montevideo, Uruguay.
 
-### Next.js 16 (App Router)
-The React framework used to structure and build the project. Next.js was chosen because it handles routing, server/client component separation, metadata, image optimization, and deployment to Vercel out of the box — with zero configuration needed. The App Router (introduced in Next.js 13) provides a cleaner file-based routing system using the `/app` directory.
+When someone visits this website, they see:
+- A **Hero section**: the first thing you see — name, role, and a brief description
+- An **About section**: background, work experience, education, languages, and a personal note
+- A **Contact section**: email address, links to GitHub and LinkedIn, and a button to download the CV
 
-### React 19
-The UI library that all components are built with. Next.js is built on top of React, so this is a natural dependency. React's component model allows the UI to be split into reusable, isolated pieces (Hero, About, Contact, etc.).
+The website also has a **language toggle** in the top navigation bar. Visitors can switch between **English** and **Spanish** and every word on the page updates instantly.
 
-### TypeScript 5
-All files use TypeScript (`.tsx`). TypeScript adds static type checking on top of JavaScript, catching errors at compile time rather than runtime. For a project like this it also improves editor autocomplete and makes props and interfaces explicit.
+### Who is it for?
 
-### Tailwind CSS 4
-A utility-first CSS framework. Instead of writing separate CSS files, styles are applied directly in JSX via class names (`className="flex items-center gap-4"`). This keeps styling co-located with markup and eliminates unused CSS in the final build. Tailwind 4 is configured via PostCSS and imported directly in `globals.css` with `@import "tailwindcss"`.
-
-### Framer Motion 12
-The animation library. Used for entrance animations in the Hero section (elements fading and sliding in on load) and scroll-triggered fade-in animations throughout the rest of the page via the `FadeIn` component. Framer Motion integrates directly with React and handles animation state, easing, and timing declaratively.
-
-### lucide-react
-A clean, consistent icon library for React. Used in the Contact section for the copy icon, check icon, external link icons, and the CV download icon. Chosen for its minimal style that matches the design system.
-
-### Node.js
-The JavaScript runtime that powers the development server (`npm run dev`) and the build process (`npm run build`). Not used at runtime — once the site is built and deployed, Node.js is no longer involved for visitors.
+This website is for anyone who wants to learn more about Mateo — recruiters, companies, collaborators, or curious visitors. The goal is to give a clear, honest picture of who he is and make it easy to get in touch.
 
 ---
 
-## 3. Architecture
+## 2. How Does a Website Work?
 
-### Frontend only — no backend, no database
+### What happens when someone types a URL?
 
-This portfolio has no server-side logic, no API routes, no authentication, and no database. All content is hardcoded directly into the React components. This is intentional: a personal portfolio does not need dynamic data. Keeping it static means:
+Imagine a URL (like `www.mateofalco.com`) as a postal address. When you type it into your browser (Chrome, Safari, Firefox), your browser sends a message to the internet saying: "Hey, I need the files for this address."
 
-- Zero infrastructure to manage
-- Instant global delivery via CDN
-- No security surface area
-- Free hosting on Vercel
+A **server** somewhere in the world receives that request, finds the right files, and sends them back to your browser. Your browser then reads those files and displays the website on your screen.
 
-### How Next.js App Router works here
+The whole process happens in under a second.
 
-The App Router uses the `/app` directory as the root. The `layout.tsx` file wraps every page with shared structure (fonts, metadata, analytics). The `page.tsx` file defines the single route (`/`) and renders all sections in order.
+### What is a server?
 
-Because there is only one page, Next.js generates a single HTML file at build time. This is called **static site generation (SSG)** — the output is plain HTML, CSS, and JavaScript files that can be served from any CDN without a server.
+A server is just a computer — but one that runs 24 hours a day, 7 days a week, and its only job is to store files and send them to people who ask for them. You never see it. It's usually in a large building called a **data center**, often far from where you live.
 
-### Server components vs client components
+### What is the difference between frontend and backend?
 
-Next.js App Router defaults to **server components** — components that render on the server at build time and send plain HTML to the browser. This is great for performance because no JavaScript is sent for components that don't need interactivity.
+Think of a restaurant:
+- The **frontend** is everything the customer sees: the menu, the tables, the decor, the food on the plate. In websites, this is what appears on your screen — text, images, buttons, colors.
+- The **backend** is the kitchen: the chef, the recipes, the ingredients storage. In websites, this is the code that runs on the server, processes data, talks to databases, etc.
 
-Components that require browser APIs or React state must be marked with `"use client"` at the top of the file. In this project:
+### Does this project have a backend?
 
-| Component | Type | Reason |
-|---|---|---|
-| `layout.tsx` | Server | Static wrapper, no interactivity |
-| `page.tsx` | Server | Just composes other components |
-| `Nav.tsx` | Client | Uses `useState` and `useEffect` for scroll detection |
-| `Hero.tsx` | Client | Uses Framer Motion animations |
-| `About.tsx` | Client | Uses Framer Motion via `FadeIn` |
-| `Contact.tsx` | Client | Uses `useState` for clipboard copy feedback |
-| `FadeIn.tsx` | Client | Uses `useRef` and `useInView` from Framer Motion |
+**No.** This portfolio has no backend.
+
+Why? Because it doesn't need one. The website only displays information — it doesn't need to save anything, process payments, or handle user accounts. All the content (name, text, links) is written directly in the code. There's nothing dynamic that requires a server to compute.
+
+This makes the website simpler, faster, cheaper to host, and more secure.
+
+### Does this project have a database?
+
+**No.** A database is like a giant organized spreadsheet where you store and retrieve data — user accounts, blog posts, orders, etc. Since this portfolio just shows static information, there's nothing to store. The text lives directly in the code files.
 
 ---
 
-## 4. Project Structure
+## 3. What Technologies Were Used and Why?
+
+### Next.js — The Framework
+
+Imagine you want to build a house. You could start from scratch — dig the foundation, pour concrete, lay every brick. Or you could buy a pre-designed kit that handles the foundation and structure for you, so you can focus on the design and finishing touches.
+
+**Next.js is that kit for websites.** It's a tool that takes care of the boring, repetitive technical work — like organizing files, optimizing images, and preparing the website to be fast — so the developer can focus on what the website actually shows and does.
+
+Next.js was chosen because it works perfectly with the hosting service used (Vercel), it handles image optimization automatically, and it makes the website fast out of the box.
+
+### React — The Building Blocks
+
+Next.js is built on top of **React**. React is the system that lets developers build a website out of reusable pieces called **components** (more on those later).
+
+Think of React like LEGO. Each component is a LEGO block — a button, a card, a navigation bar. You build each block once and you can use it anywhere. If you change the block, it changes everywhere it's used.
+
+Next.js is the instruction manual that tells you how to assemble those LEGO blocks into a finished website.
+
+### TypeScript — Smarter JavaScript
+
+Websites run on a programming language called **JavaScript**. JavaScript is what makes websites interactive — buttons that do things, text that changes, animations, etc.
+
+**TypeScript** is JavaScript with extra rules. Those rules catch mistakes before the code runs. Imagine writing a recipe and having an editor who immediately flags it if you write "add 2 cups of sugar" when you meant "2 teaspoons." TypeScript does the same for code — it finds errors early so they don't cause problems later.
+
+### Tailwind CSS — Styling Made Fast
+
+**CSS** (Cascading Style Sheets) is the language that controls how a website looks. Colors, fonts, spacing, layout — all CSS. Without CSS, a website is just plain black text on a white background.
+
+**Tailwind CSS** is a tool that provides a huge library of pre-written CSS shortcuts. Instead of writing a full style rule from scratch, you just add a short word to your code. For example, instead of writing `color: white; font-size: 18px; font-weight: bold;`, you write `text-white text-lg font-bold`. It's faster and keeps everything consistent.
+
+### Framer Motion — Animations
+
+**Framer Motion** is a library (a pre-written set of tools) for creating animations. Animations are things like elements fading in, sliding up, or moving smoothly when you interact with them.
+
+Writing animations from scratch is complex math. Framer Motion handles all that complexity — you just say "fade this in over 0.6 seconds" and it does it.
+
+*Note: the core animations in this project now use the browser's built-in tools directly (more on that in the animations section), but Framer Motion is still used for the initial entrance animations in the Hero section.*
+
+### lucide-react — Icons
+
+**Icons** are those small visual symbols you see everywhere on websites — a magnifying glass for search, an envelope for email, an arrow pointing right. Drawing icons from scratch is tedious. **lucide-react** is a library of thousands of ready-made, clean icons. You just pick the one you need and use it.
+
+### Node.js — The Engine Behind the Scenes
+
+**Node.js** is what allows JavaScript (normally a browser language) to also run on a computer or server. Next.js needs Node.js to run its development tools and to build the final website files.
+
+You never interact with Node.js directly. It runs in the background, like the engine of a car — you don't think about it, but without it, nothing moves.
+
+---
+
+## 4. What Is the File Structure?
+
+### What is a file structure?
+
+Every project is just a collection of files and folders on a computer, organized in a specific way. The file structure is the map of where everything lives.
+
+Here's what this project looks like:
 
 ```
 portfolio/
 ├── app/
-│   ├── layout.tsx        # Root layout: fonts, metadata, analytics wrapper
-│   ├── page.tsx          # Single page: composes all sections
-│   └── globals.css       # Global styles, Tailwind import, CSS variables
+│   ├── layout.tsx
+│   ├── page.tsx
+│   └── globals.css
 │
 ├── components/
-│   ├── Nav.tsx           # Fixed top navigation bar
-│   ├── Hero.tsx          # Full-viewport hero section
-│   ├── About.tsx         # About section with cards
-│   ├── Contact.tsx       # Contact section
-│   └── FadeIn.tsx        # Reusable scroll-triggered animation wrapper
+│   ├── Nav.tsx
+│   ├── Hero.tsx
+│   ├── About.tsx
+│   ├── Contact.tsx
+│   └── FadeIn.tsx
+│
+├── contexts/
+│   └── LanguageContext.tsx
 │
 ├── public/
-│   ├── MyPhoto.PNG                # Profile photo used in Hero section
-│   ├── Resume Mateo Falco.pdf     # CV file linked in Contact section
-│   └── favicon.ico                # Browser tab icon
+│   ├── MyPhoto.PNG
+│   ├── Resume Mateo Falco.pdf
+│   └── CV Mateo Falco.pdf
 │
-├── package.json          # Dependencies and scripts
-├── tsconfig.json         # TypeScript configuration
-└── next.config.ts        # Next.js configuration
+├── package.json
+└── README.md
 ```
 
-### `/app`
+### The `/app` folder — The Pages
 
-- **`layout.tsx`** — The root layout. Loads the Geist Sans and Geist Mono fonts from Google Fonts, sets the HTML `lang` attribute, defines all `<head>` metadata (title, description, Open Graph, Twitter card, robots), and wraps children with the Vercel Analytics component.
-- **`page.tsx`** — The only page in the app. Imports and renders `Nav`, `Hero`, `About`, and `Contact` in order inside a `<main>` element.
-- **`globals.css`** — Imports Tailwind CSS, defines CSS custom properties (`--background`, `--foreground`), sets `scroll-behavior: smooth`, and configures scrollbar styling.
+This folder controls what the website actually shows. Think of it as the "main room" of the project.
 
-### `/components`
+- **`layout.tsx`** — This is the outer frame of the website. It sets things that are the same on every page: the font, the browser tab title, and the analytics tracker. Think of it as the picture frame — the content changes but the frame stays the same.
 
-See [Section 5](#5-components) for detailed descriptions of each component.
+- **`page.tsx`** — This is the actual homepage. It's very simple: it just lists all the sections (Nav, Hero, About, Contact) in order, like a table of contents that says "show this, then this, then this."
 
-### `/public`
+- **`globals.css`** — This file sets the default visual rules for the entire website: the background color, the font, how smooth scrolling works, and how the scrollbar looks.
 
-Files in `/public` are served at the root URL. For example, `public/MyPhoto.PNG` is accessible at `/MyPhoto.PNG` in the browser. Next.js does not process these files — they are copied as-is into the build output.
+### The `/components` folder — The Building Blocks
 
----
+A **component** is a self-contained piece of the website. Each component is responsible for one specific part of the page. If you want to change how the navigation bar looks, you only touch `Nav.tsx`. If you want to change the hero section, you only touch `Hero.tsx`.
 
-## 5. Components
+This keeps the project organized. Instead of one giant messy file, you have small focused files, each with a clear purpose.
 
-### `Nav.tsx`
+- **`Nav.tsx`** — The navigation bar at the top
+- **`Hero.tsx`** — The main section at the top of the page
+- **`About.tsx`** — The About section with cards
+- **`Contact.tsx`** — The Contact section
+- **`FadeIn.tsx`** — A reusable animation tool (not a visible section — just a helper)
 
-The fixed navigation bar at the top of the page. It:
-- Stays fixed (`position: fixed`) at all times as the user scrolls
-- Listens to the `scroll` event via `useEffect` and adds a frosted-glass background (`bg-white/90 backdrop-blur-xl`) once the user scrolls past 32px
-- Renders three links: **Home** (`#`), **About** (`#about`), **Contact** (`#contact`)
-- Animates in on page load with a subtle slide-down using Framer Motion
+### The `/contexts` folder — Shared Information
 
-### `Hero.tsx`
+- **`LanguageContext.tsx`** — This file manages which language the website is in (English or Spanish) and makes that information available to every component. More on this below.
 
-The first section the visitor sees. Full viewport height (`min-height: 100vh`). It contains:
-- A circular profile photo on the left (loaded via Next.js `<Image>` for automatic optimization)
-- Name, role/location, headline, description, and a "Contact me" CTA button on the right
-- All elements animate in sequentially using Framer Motion's `initial`/`animate` with staggered `delay` values
+### The `/public` folder — Static Files
 
-### `About.tsx`
+**Static files** are files that don't change and are served exactly as they are — images, PDFs, icons. The browser can download them directly.
 
-A content-rich section with three parts:
-- **Part 1** — Centered text block: "ABOUT ME" label, large headline, paragraph, GitHub and LinkedIn links
-- **Row 1** — Three equal cards side by side: Experience, Education, Languages
-- **Row 2** — One full-width card: Beyond the Screen
+- **`MyPhoto.PNG`** — The profile photo shown in the Hero section
+- **`Resume Mateo Falco.pdf`** — The CV in English
+- **`CV Mateo Falco.pdf`** — The CV in Spanish
 
-Each part is wrapped in `<FadeIn>` with a small staggered delay so they animate in as the user scrolls down.
+### `package.json` — The Ingredients List
 
-### `Contact.tsx`
-
-The final section. Contains a centered title, subtitle, and a single white card with:
-- **Email row** with a copy-to-clipboard button (managed via `useState` — shows a checkmark for 2 seconds after copying)
-- **GitHub and LinkedIn** buttons side by side
-- **View / Download CV** button that opens the PDF in a new tab
-
-All external links use `target="_blank" rel="noopener noreferrer"` for security.
-
-### `FadeIn.tsx`
-
-A reusable animation wrapper component. It uses Framer Motion's `useInView` hook to detect when the wrapped element enters the viewport, then transitions it from `opacity: 0, y: 20` to `opacity: 1, y: 0`.
-
-Props:
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | `ReactNode` | — | Content to animate |
-| `delay` | `number` | `0` | Animation delay in seconds |
-| `className` | `string` | `""` | Optional CSS classes |
-| `direction` | `"up" \| "left" \| "none"` | `"up"` | Direction of entrance |
-
-The `once: true` option on `useInView` ensures the animation only runs once — it won't replay if the user scrolls back up.
+This file lists every external tool the project uses and which version of each. It's like the ingredients list for a recipe. When someone new downloads the project, they run one command and `package.json` tells the computer exactly what to install.
 
 ---
 
-## 6. Styling System
+## 5. How Does Each Component Work?
 
-### Tailwind CSS
+### Hero.tsx — The First Impression
 
-Tailwind is used for layout utilities (`flex`, `grid`, `items-center`, `gap-*`), responsive breakpoints (`sm:text-2xl`), hover states (`hover:opacity-50`, `hover:bg-gray-50`), and transitions (`transition-opacity duration-200`).
+The **Hero section** is the first thing visitors see when they land on the website. The term "hero" comes from graphic design — it means the big, bold, attention-grabbing section at the top of a page.
 
-For precise values not covered by Tailwind's default scale — exact colors, pixel sizes, font sizes, border-radius — inline `style` props are used. This keeps the design pixel-accurate without needing to extend the Tailwind config.
+This component shows:
+- A circular profile photo (loaded and optimized automatically by Next.js)
+- Mateo's name in a very large font
+- His role and location
+- A short headline and description
+- A "Contact me" button
 
-### Color Palette
+The text in this section changes based on the language selected — English or Spanish.
 
-| Role | Value | Usage |
+### About.tsx — The Full Story
+
+This component builds the entire About section. It contains:
+- A centered text block with a large headline and paragraph
+- Three cards side by side: Experience, Education, Languages
+- One full-width card: Beyond the Screen
+
+Each piece of text is stored in the language system and switches when the visitor changes the language toggle.
+
+### Contact.tsx — How to Reach Me
+
+This component shows a centered card with three things:
+
+1. **Email address with a copy button** — When you click the copy icon next to the email, the browser copies the email address to your clipboard silently. The icon briefly turns into a checkmark to confirm it worked, then switches back after 2 seconds. This is done with a simple on/off switch in the code (`true` = show checkmark, `false` = show copy icon).
+
+2. **GitHub and LinkedIn buttons** — Clicking these opens the respective profiles in a new browser tab.
+
+3. **CV download button** — This opens the PDF file directly in the browser. Which PDF it opens depends on the selected language: English shows the English CV, Spanish shows the Spanish CV.
+
+### Nav.tsx — The Navigation Bar
+
+The **navbar** is the horizontal bar fixed at the top of the page. It stays visible as you scroll — you can always click a link to jump to a section.
+
+This component does two things:
+
+1. **Navigation links** — Home, About, Contact. Clicking each one smoothly scrolls the page to that section. The labels switch language when you toggle.
+
+2. **Language toggle** — A small pill-shaped button on the right side of the navbar with "EN" and "ES" options. Clicking one sets the active language for the entire website. The active option has a dark background; the inactive one is transparent. This is powered by the Language Context (explained below).
+
+The navbar also detects when you scroll down more than 32 pixels and adds a white frosted-glass background so it stays readable over any content.
+
+### FadeIn.tsx — The Animation Helper
+
+This is not a visible section — it's a tool that other components use to animate their content.
+
+Here's how it works: imagine you're at a magic show. Before the magician reveals something, it's hidden. Then at the right moment — poof — it appears. `FadeIn` does the same thing. It wraps around any piece of content, hides it, and reveals it with a smooth fade + upward slide when the user scrolls to it.
+
+Technically, it uses something called an **Intersection Observer** — a built-in browser tool that watches whether an element is visible on screen. When the element enters the viewport (the visible area of the browser), the observer fires and triggers the animation. Once it fires, it disconnects — so the animation only plays once, never again.
+
+The `delay` option lets you stagger animations. For example, the first card appears immediately, the second card 100ms later, the third 200ms later — creating a cascade effect.
+
+### LanguageContext.tsx — The Language System
+
+A **context** in programming is shared information that any part of the application can access — without having to pass it manually from one component to the next.
+
+Here's an analogy: imagine a radio station broadcasting the current song. Every radio in every room can tune in and hear the same song, without anyone carrying the information from room to room. The language context works the same way.
+
+It stores one piece of information: the current language (`"en"` or `"es"`). It also stores all the translations — every text string for both languages. When you switch the language in the navbar, the context updates, and every component that uses it automatically re-renders with the new language.
+
+---
+
+## 6. How Is the Website Styled?
+
+### What is CSS?
+
+CSS stands for Cascading Style Sheets. It's the language that tells the browser how things should look. Without CSS, you'd have black text on a white background with no layout at all. CSS is what adds colors, fonts, spacing, borders, shadows, animations, and layout.
+
+Think of HTML (the structure of a page) as the skeleton of a building. CSS is the paint, the furniture, the lighting, and the decoration.
+
+### How does Tailwind CSS work?
+
+Tailwind provides hundreds of small, pre-named style rules called **utility classes**. Instead of writing separate style files, you add these class names directly to your elements.
+
+For example, instead of writing:
+```css
+.my-button {
+  padding: 12px 24px;
+  background-color: black;
+  color: white;
+  border-radius: 8px;
+}
+```
+
+With Tailwind you just write: `className="py-3 px-6 bg-black text-white rounded-lg"` — right next to the button in the code.
+
+This keeps styles right next to the content they affect, making it easy to see and change both at once.
+
+### What is the color palette?
+
+A **color palette** is the set of colors used throughout the design. Using a consistent set of colors makes the website look professional and coherent. This project uses:
+
+| Purpose | Color | How it looks |
 |---|---|---|
-| Background | `#f8f9fa` | All sections |
-| Primary text | `#0f0f0f` | Headings, labels, buttons |
-| Accent / blue | `#1d4ed8` | Role line in Hero, card labels in About |
-| Secondary text | `#64748b` | Body paragraphs, card content |
-| Muted text | `#94a3b8` | Small uppercase labels in Contact |
-| Card background | `#ffffff` | All cards in About and Contact |
-| Card border | `#e2e8f0` | All card borders, dividers |
+| Background | `#f8f9fa` | Very light gray, almost white |
+| Main text | `#0f0f0f` | Near black |
+| Accent / blue | `#1d4ed8` | Deep blue, used for highlights |
+| Secondary text | `#64748b` | Medium gray |
+| Cards | `#ffffff` | Pure white |
+| Card borders | `#e2e8f0` | Very light gray border |
 
-### Typography
+### What is responsive design?
 
-The project uses **Geist Sans** (a clean geometric sans-serif by Vercel) as the primary font, loaded via `next/font/google` in `layout.tsx`. This approach loads fonts at build time and injects them as CSS variables, avoiding layout shift and external font requests at runtime.
+**Responsive design** means the website looks good and works properly on any screen size — a large desktop monitor, a laptop, a tablet, or a small phone.
 
-Font sizes use `clamp()` for responsive scaling on key headings (e.g., `clamp(3rem, 7vw, 5.5rem)`), so they scale smoothly between mobile and desktop without breakpoint-specific overrides.
+Without responsive design, a website built for a desktop would appear tiny and unreadable on a phone. With responsive design, the layout adapts: columns stack vertically, font sizes scale down, and images resize.
 
-### Spacing
-
-Sections use `140px` top and bottom padding. Cards use `48px` internal padding. The main container is capped at `1100px` for the About section and `640px` for the Contact section, both centered with `margin: 0 auto`.
+This project uses responsive font sizes (`clamp()`) that automatically scale between a minimum and maximum size based on the screen width.
 
 ---
 
-## 7. Animations
+## 7. How Do the Animations Work?
 
-### Hero entrance animations
+### What is an animation on a website?
 
-Each element in the Hero section uses Framer Motion's `motion` components with explicit `initial`, `animate`, and `transition` props. Elements start invisible and slightly offset (`opacity: 0, y: 20`) and animate to their final position with staggered delays (0.1s, 0.2s, 0.32s, etc.), creating a cascading reveal effect on page load.
+An **animation** is any visual change that happens over time rather than instantly. A button that smoothly changes color when you hover over it — that's an animation. A section that fades in as you scroll down — that's an animation.
 
-The easing curve used throughout is `[0.21, 0.47, 0.32, 0.98]` — a custom cubic bezier that starts fast and settles smoothly.
+Animations make a website feel alive and polished. Done well, they guide the visitor's attention naturally.
 
-### Scroll-triggered animations
+### What is a scroll-triggered animation?
 
-The `FadeIn` component uses Framer Motion's `useInView` hook with a `-80px` root margin. This means the animation triggers 80px before the element fully enters the viewport, so it feels natural rather than delayed.
+A **scroll-triggered animation** starts playing when you scroll the page down to a specific element. Instead of everything loading at once (which can feel overwhelming), elements appear one by one as you reach them.
 
-```tsx
-const isInView = useInView(ref, { once: true, margin: "-80px" });
-```
+### How does the browser know when you scroll to a section?
 
-When `isInView` becomes `true`, Framer Motion transitions the element from its initial hidden state to `opacity: 1, y: 0, x: 0` over 500ms. The `once: true` flag prevents re-animation on scroll back.
+The browser has a built-in tool called the **Intersection Observer API**. Here's how to think about it:
+
+Imagine you're reading a book and you have a bookmark that beeps when a specific page comes into view. The Intersection Observer is that bookmark. You attach it to any element on the page, and it watches. The moment that element enters the visible area of the browser window (the **viewport**), it fires a signal.
+
+In this project, the `FadeIn` component attaches an Intersection Observer to itself. When the observer fires (element is now visible), the code:
+1. Changes the element's opacity from 0 (invisible) to 1 (fully visible)
+2. Moves it from 30 pixels below its normal position up to its normal position
+3. Both changes happen with a smooth CSS transition over 0.6 seconds
+
+After it fires once, the observer disconnects — it stops watching. This ensures the animation only plays once, not every time you scroll up and down past the element.
 
 ---
 
-## 8. Deployment
+## 8. How Is It Published Online?
 
-### Running locally
+### What is hosting?
 
-```bash
-# Install dependencies
-npm install
+**Hosting** means paying for a server to store your website files and make them available to anyone on the internet 24/7. Without hosting, your website only exists on your personal computer and no one else can see it.
 
-# Start the development server
-npm run dev
-```
+### What is Vercel?
 
-The site will be available at `http://localhost:3000`. The dev server supports hot module replacement — changes to any file are reflected instantly in the browser without a full reload.
+**Vercel** is the company that hosts this website. They specialize in exactly this type of project — Next.js websites. Think of Vercel as a very smart landlord. They not only store your files, they also:
 
-```bash
-# Build for production
-npm run build
+- Copy those files to servers all around the world (called a **CDN** — Content Delivery Network) so the website loads fast no matter where the visitor is
+- Automatically rebuild and redeploy the website every time you push new code
+- Provide a live URL where anyone can visit the site
 
-# Preview the production build locally
-npm start
-```
+### What is GitHub?
 
-### Deploying to Vercel
+**GitHub** is a website where developers store their code. It's like Google Drive but specifically designed for code. It tracks every change you ever make — who changed what, when, and why. If you make a mistake, you can roll back to any earlier version.
 
-This project is deployed on [Vercel](https://vercel.com), the hosting platform built by the creators of Next.js.
+GitHub also acts as the trigger for deployment. When you push new code to GitHub, Vercel sees it and automatically rebuilds the website.
 
-The deployment works as follows:
+### How does pushing code automatically update the website?
 
-1. The GitHub repository is connected to a Vercel project
-2. Every time a commit is pushed to the `main` branch, Vercel automatically:
-   - Pulls the latest code
-   - Runs `npm run build` to generate the static output
-   - Deploys the result to its global CDN
-3. The live site updates within ~30 seconds of pushing
+The workflow looks like this:
 
-Vercel also runs `@vercel/analytics` (already wired up in `layout.tsx`) to provide basic page view statistics from the Vercel dashboard — no setup needed.
+1. You make a change to a file on your computer
+2. You run a few commands (explained below) to "push" that change to GitHub
+3. GitHub stores the new version of the code
+4. Vercel is watching GitHub. The moment it detects a new push, it automatically:
+   - Downloads the latest code
+   - Runs `npm run build` (which converts all the code into final website files)
+   - Uploads those files to its servers around the world
+5. Within about 30 seconds, the live website shows the updated content
 
-### Environment
-
-No environment variables are required. There are no API keys, secrets, or external services to configure.
+You don't click anything on Vercel. It all happens automatically.
 
 ---
 
 ## 9. How to Make Changes
 
-### Editing content
+### Step 1 — Open the project
 
-All content is hardcoded in the component files. To change text, photos, or links:
+Open the project folder on your computer using a code editor. The most popular one is **VS Code** (Visual Studio Code), which is free.
 
-| What to change | Where |
-|---|---|
-| Name, role, headline, description | `components/Hero.tsx` |
-| About text, experience, education, languages | `components/About.tsx` |
-| Email, GitHub URL, LinkedIn URL | `components/Contact.tsx` |
-| Page title and SEO metadata | `app/layout.tsx` |
-| Profile photo | Replace `public/MyPhoto.PNG` (keep the exact filename) |
-| CV file | Replace `public/Resume Mateo Falco.pdf` (keep the exact filename) |
+### Step 2 — Start the local preview
 
-### Pushing changes to update the live site
+Open the **Terminal** (a text-based interface for your computer) inside the project folder and run:
 
 ```bash
-# Stage your changes
-git add .
-
-# Commit with a message
-git commit -m "update about section"
-
-# Push to main — Vercel deploys automatically
-git push origin main
+npm run dev
 ```
 
-That's it. Vercel detects the push, rebuilds the site, and the live URL is updated within about 30 seconds.
+**What this does:** It starts a local version of the website on your own computer. No one else can see it — it's just for you to preview changes before publishing. Open your browser and go to `http://localhost:3000` to see it.
+
+### Step 3 — Make your changes
+
+Find the file that controls what you want to change:
+
+| What you want to change | Which file to edit |
+|---|---|
+| Your name, headline, or description | `components/Hero.tsx` |
+| About text, experience, education, languages | `components/About.tsx` |
+| Email address, CV file | `components/Contact.tsx` |
+| Navigation links | `components/Nav.tsx` |
+| All translations (EN and ES text) | `contexts/LanguageContext.tsx` |
+| Browser tab title or description | `app/layout.tsx` |
+| Profile photo | Replace `public/MyPhoto.PNG` (keep the exact filename) |
+| English CV | Replace `public/Resume Mateo Falco.pdf` |
+| Spanish CV | Replace `public/CV Mateo Falco.pdf` |
+
+Open the file, find the text you want to change, edit it, and save. The browser preview at `http://localhost:3000` updates automatically.
+
+### Step 4 — Publish your changes
+
+Once you're happy with the changes, run these three commands in the Terminal, one at a time:
+
+```bash
+git add .
+```
+**What this does:** Tells Git "I want to include all my changes in the next save."
+
+```bash
+git commit -m "describe what you changed here"
+```
+**What this does:** Creates a permanent snapshot of your changes with a label describing what you did. Replace the text in quotes with something descriptive, like `"updated about section"` or `"added new job experience"`.
+
+```bash
+git push origin main
+```
+**What this does:** Sends your saved snapshot to GitHub. This triggers Vercel to automatically rebuild and update the live website.
+
+That's it. Within about 30 seconds, anyone visiting your website will see the updated version.
+
+---
+
+## 10. Glossary
+
+A plain-English dictionary of every technical term used in this document.
+
+| Term | What it means |
+|---|---|
+| **API** | A way for two programs to talk to each other and exchange information |
+| **Browser** | The program you use to visit websites — Chrome, Safari, Firefox, Edge |
+| **Build** | The process of converting code into the final files a browser can display |
+| **CDN (Content Delivery Network)** | A network of servers around the world that store copies of your website so it loads fast from anywhere |
+| **CLI** | Command-Line Interface — a way to control a computer by typing text commands |
+| **Component** | A self-contained, reusable piece of a website (like a navigation bar or a card) |
+| **Context** | A system that shares information across all parts of an application without passing it manually |
+| **CSS** | The language that controls how a website looks — colors, fonts, spacing, layout |
+| **Database** | An organized system for storing and retrieving data (like a very powerful spreadsheet) |
+| **Deployment** | The process of publishing your website so it's live and accessible to everyone on the internet |
+| **Framework** | A pre-built toolkit that handles common tasks so developers can focus on what's unique about their project |
+| **Frontend** | Everything visible to the user on a website — text, images, buttons, layout |
+| **Backend** | The hidden server-side code that processes data, talks to databases, handles business logic |
+| **Git** | A tool that tracks every change made to code over time — like a detailed version history |
+| **GitHub** | A website where developers store and share code using Git |
+| **Hosting** | Paying for a server to store and serve your website to visitors 24/7 |
+| **HTML** | The language that defines the structure and content of a web page |
+| **Icon** | A small visual symbol used in design (envelope for email, magnifying glass for search, etc.) |
+| **Intersection Observer** | A built-in browser tool that detects when an element enters or exits the visible area of the screen |
+| **JavaScript** | The programming language that makes websites interactive |
+| **Library** | A pre-written collection of code that solves a specific problem (like animations or icons) |
+| **localhost** | A way to run a website on your own computer for testing — only you can see it |
+| **Navbar** | Navigation bar — the horizontal bar at the top of a website with links |
+| **Node.js** | A tool that lets JavaScript run outside of a browser (on servers or computers) |
+| **npm** | A tool that downloads and manages libraries for a JavaScript project |
+| **Package.json** | A file listing all the libraries a project uses and their versions |
+| **PDF** | A file format for documents that looks the same on any device |
+| **React** | A JavaScript library for building websites out of reusable components |
+| **Repository** | A project folder tracked by Git — often stored on GitHub |
+| **Responsive design** | Designing a website so it looks good on screens of any size (desktop, tablet, phone) |
+| **Server** | A computer that stores files and sends them to anyone who requests them via the internet |
+| **Static site** | A website made of fixed files — no server processing, no database, just files served as-is |
+| **Terminal** | A text-based interface for controlling a computer by typing commands |
+| **TypeScript** | JavaScript with extra rules that catch coding mistakes before they become problems |
+| **URL** | A web address — like `www.example.com` — that locates a specific page on the internet |
+| **Vercel** | A hosting platform specializing in Next.js websites with automatic deployment from GitHub |
+| **Viewport** | The visible area of a browser window — the part of the page you can actually see at any moment |

@@ -14,38 +14,27 @@ export default function Hero() {
       className="relative flex items-center justify-center overflow-hidden"
       style={{ minHeight: "100vh", backgroundColor: "#f8f9fa" }}
     >
-      <div className="relative w-full max-w-7xl mx-auto px-10 flex flex-row items-center gap-20">
+      <div className="relative w-full max-w-7xl mx-auto px-6 md:px-10 flex flex-col md:flex-row items-center gap-10 md:gap-20 pt-28 pb-16 md:py-0">
 
-        {/* Left: Photo */}
+        {/* Photo */}
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease }}
-          className="flex-shrink-0 flex items-center justify-center"
+          className="hero-photo-container"
         >
-          <div
-            style={{
-              borderRadius: "50%",
-              boxShadow: "0 0 0 5px #1d4ed8, 0 0 50px 10px rgba(29,78,216,0.12)",
-              width: 480,
-              height: 480,
-              overflow: "hidden",
-              position: "relative",
-            }}
-          >
-            <Image
-              src="/MyPhoto.PNG"
-              alt="Mateo Falco"
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              style={{ objectFit: "cover" }}
-              priority
-            />
-          </div>
+          <Image
+            src="/MyPhoto.PNG"
+            alt="Mateo Falco"
+            fill
+            sizes="(max-width: 640px) 240px, (max-width: 1024px) 320px, 480px"
+            style={{ objectFit: "cover" }}
+            priority
+          />
         </motion.div>
 
-        {/* Right: Content */}
-        <div className="flex flex-col items-start">
+        {/* Content */}
+        <div className="flex flex-col items-center md:items-start text-center md:text-left w-full">
 
           {/* Name */}
           <motion.h1
@@ -55,21 +44,26 @@ export default function Hero() {
             style={{
               color: "#0f0f0f",
               lineHeight: 1.0,
-              fontSize: "clamp(4rem, 8vw, 7rem)",
+              fontSize: "clamp(2.75rem, 8vw, 7rem)",
               fontWeight: 800,
               letterSpacing: "-0.03em",
-              marginBottom: "20px",
+              marginBottom: "16px",
             }}
           >
             Mateo Falco
           </motion.h1>
 
-          {/* Role + location */}
+          {/* Role */}
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.32, ease }}
-            style={{ color: "#1d4ed8", fontSize: "22px", fontWeight: 600, marginBottom: "24px" }}
+            style={{
+              color: "#1d4ed8",
+              fontSize: "clamp(1rem, 3vw, 1.375rem)",
+              fontWeight: 600,
+              marginBottom: "20px",
+            }}
           >
             {t.hero.role}
           </motion.p>
@@ -81,10 +75,10 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.42, ease }}
             style={{
               color: "#0f0f0f",
-              fontSize: "clamp(1.6rem, 3vw, 2.25rem)",
+              fontSize: "clamp(1.25rem, 3vw, 2.25rem)",
               fontWeight: 700,
               lineHeight: 1.2,
-              marginBottom: "20px",
+              marginBottom: "16px",
               maxWidth: "540px",
             }}
           >
@@ -98,9 +92,9 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.52, ease }}
             style={{
               color: "#64748b",
-              fontSize: "18px",
+              fontSize: "clamp(1rem, 2vw, 1.125rem)",
               lineHeight: 1.75,
-              marginBottom: "40px",
+              marginBottom: "32px",
               maxWidth: "520px",
             }}
           >
@@ -112,23 +106,21 @@ export default function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.62, ease }}
-            style={{ display: "flex", alignItems: "center", gap: "16px", flexWrap: "wrap" }}
+            className="w-full md:w-auto"
           >
             <a
               href="#contact"
+              className="flex md:inline-flex items-center justify-center w-full md:w-auto transition-all duration-200 hover:bg-gray-100"
               style={{
                 color: "#0f0f0f",
                 border: "2px solid #0f0f0f",
-                height: "56px",
+                height: "52px",
                 paddingLeft: "32px",
                 paddingRight: "32px",
                 borderRadius: "10px",
                 fontSize: "16px",
                 fontWeight: 600,
-                display: "inline-flex",
-                alignItems: "center",
               }}
-              className="transition-all duration-200 hover:bg-gray-100"
             >
               {t.hero.contactBtn}
             </a>

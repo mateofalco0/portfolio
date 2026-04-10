@@ -22,24 +22,24 @@ export default function Contact() {
     <section
       id="contact"
       className="scroll-mt-20"
-      style={{ backgroundColor: "#f8f9fa", paddingTop: "140px", paddingBottom: "140px" }}
+      style={{ backgroundColor: "#f8f9fa", paddingTop: "100px", paddingBottom: "100px" }}
     >
-      <div style={{ maxWidth: "640px", margin: "0 auto", paddingLeft: "32px", paddingRight: "32px" }}>
+      <div className="w-full max-w-[600px] mx-auto px-4 sm:px-6">
 
         {/* Title + subtitle */}
         <FadeIn delay={0}>
-          <div style={{ textAlign: "center", marginBottom: "56px" }}>
+          <div className="text-center mb-10 md:mb-14">
             <h2 style={{
-              fontSize: "clamp(3rem, 7vw, 5rem)",
+              fontSize: "clamp(2.5rem, 10vw, 5rem)",
               fontWeight: 800,
               letterSpacing: "-0.03em",
               color: "#0f0f0f",
               lineHeight: 1.05,
-              marginBottom: "16px",
+              marginBottom: "12px",
             }}>
               {c.title}
             </h2>
-            <p style={{ fontSize: "17px", color: "#64748b", lineHeight: 1.6 }}>
+            <p style={{ fontSize: "clamp(0.95rem, 3vw, 1.0625rem)", color: "#64748b", lineHeight: 1.6 }}>
               {c.subtitle}
             </p>
           </div>
@@ -47,39 +47,30 @@ export default function Contact() {
 
         {/* Card */}
         <FadeIn delay={0.15}>
-          <div style={{
-            backgroundColor: "#ffffff",
-            border: "1px solid #e2e8f0",
-            borderRadius: "12px",
-            padding: "40px",
-          }}>
+          <div className="rounded-xl p-6 sm:p-10" style={{ backgroundColor: "#ffffff", border: "1px solid #e2e8f0" }}>
 
             {/* Email row */}
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-              <div>
-                <p style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#94a3b8", marginBottom: "6px" }}>
+            <div className="flex items-center justify-between gap-4">
+              <div className="min-w-0">
+                <p style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#94a3b8", marginBottom: "5px" }}>
                   Email
                 </p>
-                <p style={{ fontSize: "17px", fontWeight: 500, color: "#0f0f0f" }}>
+                <p className="truncate" style={{ fontSize: "clamp(0.875rem, 3.5vw, 1.0625rem)", fontWeight: 500, color: "#0f0f0f" }}>
                   {email}
                 </p>
               </div>
               <button
                 onClick={copyEmail}
                 title="Copy email"
+                className="flex-shrink-0 flex items-center justify-center transition-colors hover:border-gray-300"
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  width: "40px",
-                  height: "40px",
+                  width: "44px",
+                  height: "44px",
                   borderRadius: "8px",
                   border: "1px solid #e2e8f0",
                   backgroundColor: "transparent",
                   cursor: "pointer",
                   color: copied ? "#1d4ed8" : "#64748b",
-                  flexShrink: 0,
-                  marginLeft: "16px",
                   transition: "color 0.2s",
                 }}
               >
@@ -88,82 +79,66 @@ export default function Contact() {
             </div>
 
             {/* Divider */}
-            <div style={{ height: "1px", backgroundColor: "#e2e8f0", margin: "32px 0" }} />
+            <div style={{ height: "1px", backgroundColor: "#e2e8f0", margin: "28px 0" }} />
 
             {/* GitHub + LinkedIn */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
+            <div className="grid grid-cols-2 gap-3">
               <a
                 href="https://github.com/mateofalco0"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors"
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "10px",
-                  height: "48px",
+                  minHeight: "48px",
                   borderRadius: "8px",
                   border: "1px solid #e2e8f0",
                   fontSize: "15px",
                   fontWeight: 600,
                   color: "#0f0f0f",
                   textDecoration: "none",
-                  transition: "background 0.2s",
                 }}
-                className="hover:bg-gray-50"
               >
-                <ExternalLink size={18} />
+                <ExternalLink size={16} />
                 GitHub
               </a>
               <a
                 href="https://www.linkedin.com/in/mateo-falco-521956237"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors"
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "10px",
-                  height: "48px",
+                  minHeight: "48px",
                   borderRadius: "8px",
                   border: "1px solid #e2e8f0",
                   fontSize: "15px",
                   fontWeight: 600,
                   color: "#0f0f0f",
                   textDecoration: "none",
-                  transition: "background 0.2s",
                 }}
-                className="hover:bg-gray-50"
               >
-                <ExternalLink size={18} />
+                <ExternalLink size={16} />
                 LinkedIn
               </a>
             </div>
 
             {/* Divider */}
-            <div style={{ height: "1px", backgroundColor: "#e2e8f0", margin: "32px 0" }} />
+            <div style={{ height: "1px", backgroundColor: "#e2e8f0", margin: "28px 0" }} />
 
             {/* Download CV */}
             <a
               href={c.cvLink}
               target="_blank"
               rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 w-full hover:opacity-80 transition-opacity"
               style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "10px",
-                height: "52px",
+                minHeight: "52px",
                 borderRadius: "8px",
                 backgroundColor: "#0f0f0f",
                 color: "#ffffff",
                 fontSize: "15px",
                 fontWeight: 600,
                 textDecoration: "none",
-                width: "100%",
-                transition: "opacity 0.2s",
               }}
-              className="hover:opacity-80"
             >
               <FileText size={18} />
               {c.cvBtn}
