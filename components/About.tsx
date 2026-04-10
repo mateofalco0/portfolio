@@ -14,10 +14,10 @@ export default function About() {
       className="scroll-mt-20"
       style={{ backgroundColor: "#f8f9fa", paddingTop: "100px", paddingBottom: "100px" }}
     >
-      <div className="w-full max-w-[1100px] mx-auto px-4 sm:px-6 md:px-8">
+      <div style={{ maxWidth: "1100px", margin: "0 auto", paddingLeft: "clamp(16px, 5vw, 32px)", paddingRight: "clamp(16px, 5vw, 32px)" }}>
 
         {/* ── Part 1: Text block ── */}
-        <div className="text-center mb-16 md:mb-28">
+        <div style={{ textAlign: "center", marginBottom: "clamp(64px, 10vw, 112px)" }}>
 
           <FadeIn delay={0}>
             <p style={{
@@ -37,6 +37,7 @@ export default function About() {
               letterSpacing: "-0.03em",
               color: "#0f0f0f",
               marginBottom: "28px",
+              textAlign: "center",
             }}>
               {a.headline1}<br />
               {a.headline2}<br />
@@ -51,13 +52,14 @@ export default function About() {
               color: "#64748b",
               maxWidth: "680px",
               margin: "0 auto 32px",
+              textAlign: "center",
             }}>
               {a.paragraph}
             </p>
           </FadeIn>
 
           <FadeIn delay={0.2}>
-            <div className="flex items-center justify-center gap-8">
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "32px" }}>
               <a
                 href="https://github.com/mateofalco0"
                 target="_blank"

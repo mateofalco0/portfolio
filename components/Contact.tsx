@@ -24,11 +24,11 @@ export default function Contact() {
       className="scroll-mt-20"
       style={{ backgroundColor: "#f8f9fa", paddingTop: "100px", paddingBottom: "100px" }}
     >
-      <div className="w-full max-w-[600px] mx-auto px-4 sm:px-6">
+      <div style={{ maxWidth: "600px", margin: "0 auto", paddingLeft: "clamp(16px, 5vw, 24px)", paddingRight: "clamp(16px, 5vw, 24px)" }}>
 
         {/* Title + subtitle */}
         <FadeIn delay={0}>
-          <div className="text-center mb-10 md:mb-14">
+          <div style={{ textAlign: "center", marginBottom: "clamp(40px, 8vw, 56px)" }}>
             <h2 style={{
               fontSize: "clamp(2.5rem, 10vw, 5rem)",
               fontWeight: 800,
